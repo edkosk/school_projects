@@ -1,0 +1,9 @@
+The	'cat'	command is the most universal and powerful tool.
+It is considered to be one of the most frequently used commands.
+It can be used to display the content of a file, copy content from one file to another, display the line number, etc.
+	
+Cat can be described as a standard Unix utility that sequentially reads files, writing them on the standard output.
+The name is derived from the function to catenate files. It has been shipped to several operating systems.
+This command is used to concatenate files which include multiple files into one file.
+	
+

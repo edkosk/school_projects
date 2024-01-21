@@ -1,0 +1,12 @@
+
+	FILE
+file file file
+test File 
+			
+\_(o_0)_/
+
+		~
+~end of fIle~
+	
+This is a test file.
+It contains some non-printable characters like tab    and newline.
