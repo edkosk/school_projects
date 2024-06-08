@@ -1,0 +1,16 @@
+#include <math.h>
+#include <stdlib.h>
+#include "../s21_math.h"
+
+#test s_21_first_test_acos
+for (double x = -1.0; x <= 1.0; x += 0.01)
+    ck_assert_double_eq_tol(acos(x), s21_acos(x), 1e-6);
+
+#test s_21_nan_test_acos
+  ck_assert_double_nan(s21_acos(S21_NaN));
+
+#test s_21_pos_inf_test_acos
+  ck_assert_double_nan(s21_acos(S21_POS_INF));
+
+#test s_21_neg_inf_test_acos
+  ck_assert_double_nan(s21_acos(S21_NEG_INF));

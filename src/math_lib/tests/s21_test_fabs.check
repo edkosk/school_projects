@@ -1,0 +1,34 @@
+#include <math.h>
+#include <stdlib.h>
+#include "../s21_math.h"
+
+#test positive_value
+double x = 10.01;
+ck_assert_double_eq(s21_fabs(x), fabs(x));
+double y = 103568.56;
+ck_assert_double_eq(s21_fabs(y), fabs(y));
+double z = 0.000021;
+ck_assert_double_eq(s21_fabs(z), fabs(z));
+
+#test negative_value
+double x = -10.01;
+ck_assert_double_eq(s21_fabs(x), fabs(x));
+double y = -103568.56;
+ck_assert_double_eq(s21_fabs(y), fabs(y));
+double z = -0.000021;
+ck_assert_double_eq(s21_fabs(z), fabs(z));
+
+#test zero
+double x = +0.0;
+ck_assert_double_eq(s21_fabs(x), fabs(x));
+double y = -0.0;
+ck_assert_double_eq(s21_fabs(y), fabs(y));
+
+#test infinity
+ck_assert_double_eq(s21_fabs(S21_POS_INF), fabs(S21_POS_INF));
+ck_assert_double_eq(s21_fabs(S21_NEG_INF), fabs(S21_NEG_INF));
+
+#test NaN
+double x = NAN;
+ck_assert_double_nan(s21_fabs(x));
+ck_assert_double_nan(fabs(x));

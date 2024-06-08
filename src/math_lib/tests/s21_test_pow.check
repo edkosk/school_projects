@@ -1,0 +1,118 @@
+#include <math.h>
+#include <stdlib.h>
+#include "../s21_math.h"
+
+#test positive_value
+double x = 2, y = 3;
+ck_assert_double_eq_tol(s21_pow(x, y), pow(x, y), 1e-6);
+double a = 32.865, b = 0.74;
+ck_assert_double_eq_tol(s21_pow(a, b), pow(a, b), 1e-6);
+
+#test for_sqrt
+double q = 2500, p = 0.5;
+ck_assert_double_eq_tol(s21_pow(q, p), pow(q, p), 1e-6);
+
+#test zero
+double x = 0, y = 0;
+ck_assert_double_eq(s21_pow(x, y), pow(x, y));
+
+
+#test negative_value
+double x = -2, y = -3;
+ck_assert_double_eq_tol(s21_pow(x, y), pow(x, y), 1e-6);
+double q = 0.985364, p = -8;
+ck_assert_double_eq_tol(s21_pow(q, p), pow(q, p), 1e-6);
+
+#test NaN
+double x = NAN, y = 21;
+ck_assert_double_nan(s21_pow(x, y));
+ck_assert_double_nan(pow(x, y));
+double a = 21, b = NAN;
+ck_assert_double_nan(s21_pow(a, b));
+ck_assert_double_nan(pow(a, b));
+
+#test base_zero_exp_nonint
+double x = -0.356, y = 0.89;
+ck_assert_double_nan(s21_pow(x, y));
+ck_assert_double_nan(pow(x, y));
+double a = -32.865, b = -0.74;
+ck_assert_double_nan(s21_pow(a, b));
+ck_assert_double_nan(pow(a, b));
+
+#test overflows
+double x = 735.00857, y = 56.087;
+ck_assert_float_infinite(s21_pow(x, y));
+ck_assert_float_infinite(pow(x, y));
+
+#test base_one_exp_NAN_or_not
+double x = 1, y  = NAN;
+ck_assert_double_eq(s21_pow(x, y), pow(x, y));
+double a = 1, b  = 0.325;
+ck_assert_double_eq(s21_pow(a, b), pow(a, b));
+double q = 1, p  = -0.325;
+ck_assert_double_eq(s21_pow(q, p), pow(q, p));
+
+#test base_NAN_or_not_exp_zero
+double x = NAN, y  = 0;
+ck_assert_double_eq(s21_pow(x, y), pow(x, y));
+double a = 0.352, b  = 0;
+ck_assert_double_eq(s21_pow(a, b), pow(a, b));
+double q = -0.325, p  = 0;
+ck_assert_double_eq(s21_pow(q, p), pow(q, p));
+
+#test base_zero_exp_int
+double x = -0, y = 3;
+ck_assert_double_eq(s21_pow(x, y), pow(x, y));
+double a = 0, b = 12;
+ck_assert_double_eq(s21_pow(a, b), pow(a, b));
+
+#test base_negone_exp_infinity
+double x = -1, y = S21_POS_INF;
+ck_assert_double_eq(s21_pow(x, y), pow(x, y));
+double a = -1, b = S21_NEG_INF;
+ck_assert_double_eq(s21_pow(a, b), pow(a, b));
+
+#test base_less_one_exp_infinity
+double x = -0.652, y = S21_NEG_INF;
+ck_assert_double_infinite(s21_pow(x, y));
+ck_assert_double_infinite(pow(x, y));
+double a = 0.625, b = S21_POS_INF;
+ck_assert_double_eq(s21_pow(a, b), pow(a, b));
+
+#test base_more_one_exp_infinity
+double x = 1.009831, y = S21_NEG_INF;
+ck_assert_double_eq(s21_pow(x, y), pow(x, y));
+double a = 1.009831, b = S21_POS_INF;
+ck_assert_double_infinite(s21_pow(a, b));
+ck_assert_double_infinite(pow(a, b));
+
+#test base_neginf_exp_less_zero
+double x = S21_NEG_INF, y = -3;
+ck_assert_double_eq(s21_pow(x, y), pow(x, y));
+double a = S21_NEG_INF, b = -12;
+ck_assert_double_eq(s21_pow(a, b), pow(a, b));
+
+#test base_neginf_exp_more_zero
+double x = S21_NEG_INF, y = 3;
+ck_assert_double_infinite(s21_pow(x, y));
+ck_assert_double_infinite(pow(x, y));
+double a = S21_NEG_INF, b = 12;
+ck_assert_double_infinite(s21_pow(a, b));
+ck_assert_double_infinite(pow(a, b));
+
+#test base_posinf_exp_more_zero
+double x = S21_POS_INF, y = -3;
+ck_assert_double_eq(s21_pow(x, y), pow(x, y));
+
+#test base_posinf_exp_less_zero
+double x =S21_POS_INF, y = 3;
+ck_assert_double_infinite(s21_pow(x, y));
+ck_assert_double_infinite(pow(x, y));
+
+#test base_zero_exp_less_zero
+double x = -0, y = -3;
+ck_assert_double_infinite(s21_pow(x, y));
+ck_assert_double_infinite(pow(x, y));
+double a = 0, b = -12;
+ck_assert_double_infinite(s21_pow(a, b));
+ck_assert_double_infinite(pow(a, b));

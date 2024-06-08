@@ -1,0 +1,38 @@
+#include <math.h>
+#include <stdlib.h>
+#include "../s21_math.h"
+
+#test negative_value
+double x = -2500;
+ck_assert_ldouble_nan(s21_sqrt(x));
+ck_assert_ldouble_nan(sqrt(x));
+double y = -19.743;
+ck_assert_ldouble_nan(s21_sqrt(y));
+ck_assert_ldouble_nan(sqrt(y));
+double a = -3.01;
+ck_assert_ldouble_nan(s21_sqrt(a));
+ck_assert_ldouble_nan(sqrt(a));
+
+#test positive_value
+double x = 2500;
+ck_assert_double_eq_tol(s21_sqrt(x), sqrt(x), 1e-6);
+double y = 19.743;
+ck_assert_double_eq_tol(s21_sqrt(y), sqrt(y), 1e-6);
+double a = 3.01;
+ck_assert_double_eq_tol(s21_sqrt(a), sqrt(a), 1e-6);
+
+#test zero
+double x = 0.0;
+ck_assert_double_eq(s21_sqrt(x), sqrt(x));
+double y = -0.0;
+ck_assert_double_eq(s21_sqrt(y), sqrt(y));
+
+#test NaN
+double x = NAN;
+ck_assert_double_nan(s21_sqrt(x));
+ck_assert_double_nan(sqrt(x));
+
+#test positive_infinity
+double x = S21_POS_INF;
+ck_assert_double_infinite(s21_sqrt(x));
+ck_assert_double_infinite(sqrt(x));

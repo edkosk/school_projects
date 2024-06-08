@@ -1,0 +1,39 @@
+#include <math.h>
+#include <stdlib.h>
+#include "../s21_math.h"
+
+#test positive_value
+double x = 15.632541;
+ck_assert_double_eq_tol(s21_exp(x), exp(x), 1e-6);
+double y = 0.01364;
+ck_assert_double_eq_tol(s21_exp(y), exp(y), 1e-6);
+double z = 123.087;
+ck_assert_double_eq_tol(s21_exp(z), exp(z), 1e-6);
+
+#test negative_value
+double x = -15.632541;
+ck_assert_double_eq_tol(s21_exp(x), exp(x), 1e-6);
+double y = -0.001364;
+ck_assert_double_eq_tol(s21_exp(y), exp(y), 1e-6);
+
+#test huge_positive_overflow
+double x = 700;
+ck_assert_float_infinite(s21_exp(x));
+ck_assert_float_infinite(exp(x));
+
+#test negative_infinity
+ck_assert_double_eq(s21_exp(S21_NEG_INF), exp(S21_NEG_INF));
+
+#test positive_infinity
+ck_assert_double_infinite(s21_exp(S21_POS_INF));
+ck_assert_double_infinite(exp(S21_POS_INF));
+
+#test NaN
+double x = NAN;
+ck_assert_double_nan(exp(x));
+ck_assert_double_nan(s21_exp(x));
+
+#test for_exp
+for(int i = 0; i <= 16; i++){
+ck_assert_double_eq_tol(s21_exp(i), exp(i), 1e-6);
+}

@@ -1,0 +1,16 @@
+#include <math.h>
+#include <stdlib.h>
+#include "../s21_math.h"
+
+#test s_21_first_test_cos  
+for (double x = -500; x <= 500; x += 0.1)
+    ck_assert_double_eq_tol(cos(x), s21_cos(x), 1e-6);
+
+#test s_21_nan_test_cos
+  ck_assert_double_nan(s21_cos(S21_NaN));
+
+#test s_21_pos_inf_test_cos
+  ck_assert_double_nan(s21_cos(S21_POS_INF));
+
+#test s_21_neg_inf_test_cos
+  ck_assert_double_nan(s21_cos(S21_NEG_INF));

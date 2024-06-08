@@ -1,0 +1,24 @@
+#include <math.h>
+#include <stdlib.h>
+#include "../s21_math.h"
+
+#test s_21_first_test_tan  
+for (double x = -100; x <= 100; x += 0.1)
+    ck_assert_double_eq_tol(tan(x), s21_tan(x), 1e-6);
+
+#test s_21_second_test_tan
+  for (double i = 1.5; i <= M_PI_2; i += 0.1) {
+    ck_assert_double_eq_tol(s21_tan(i), tan(i), 1e-6);
+  }
+
+#test s_21_third_test_tan
+  ck_assert_double_eq_tol(s21_tan(M_PI), tan(M_PI), 1e-6);
+
+#test s_21_nan_test_tan
+  ck_assert_double_nan(s21_tan(S21_NaN));
+
+#test s_21_pos_inf_test_tan
+  ck_assert_double_nan(s21_tan(S21_POS_INF));
+
+#test s_21_neg_inf_test_tan
+  ck_assert_double_nan(s21_tan(S21_NEG_INF));

@@ -1,0 +1,45 @@
+#include <math.h>
+#include <stdlib.h>
+#include "../s21_math.h"
+
+#test positive_value
+double x = 2.15;
+ck_assert_double_eq_tol(s21_log(x), log(x), 1e-6);
+double y = 21;
+ck_assert_double_eq_tol(s21_log(y), log(y), 1e-6);
+double z = 0.356;
+ck_assert_double_eq_tol(s21_log(z), log(z), 1e-6);
+double q = 131.12345;
+ck_assert_double_eq_tol(s21_log(q), log(q), 1e-6);
+
+#test negative_value
+double x = -2.15;
+ck_assert_double_nan(log(x));
+ck_assert_double_nan(s21_log(x));
+
+#test value_zero
+double x = 0;
+ck_assert_double_infinite(s21_log(x));
+ck_assert_double_infinite(log(x));
+
+#test value_one
+double x = 1;
+ck_assert_double_eq(s21_log(x), log(x));
+
+#test positive_infinity
+ck_assert_double_infinite(s21_log(S21_POS_INF));
+ck_assert_double_infinite(log(S21_POS_INF));
+
+#test negative_infinity
+ck_assert_double_nan(log(S21_NEG_INF));
+ck_assert_double_nan(s21_log(S21_NEG_INF));
+
+#test NaN
+double x = NAN;
+ck_assert_double_nan(log(x));
+ck_assert_double_nan(s21_log(x));
+
+#test for_log
+for(int i = 1; i <= 16; i++){
+ck_assert_double_eq_tol(s21_log(i), log(i), 1e-6);
+}

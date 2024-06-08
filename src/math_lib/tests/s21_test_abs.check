@@ -1,0 +1,25 @@
+#include <math.h>
+#include <stdlib.h>
+#include "../s21_math.h"
+
+#test positive_value
+int x = 21;
+ck_assert_int_eq(s21_abs(x), abs(x));
+int y = 132586;
+ck_assert_int_eq(s21_abs(y), abs(y));
+int z = 126374071;
+ck_assert_int_eq(s21_abs(z), abs(z));
+
+#test negative_value
+int x = -21;
+ck_assert_int_eq(s21_abs(x), abs(x));
+int y = -132586;
+ck_assert_int_eq(s21_abs(y), abs(y));
+int z = -126374071;
+ck_assert_int_eq(s21_abs(z), abs(z));
+
+#test zero
+int x = 0;
+ck_assert_int_eq(s21_abs(x), abs(x));
+int y = -0;
+ck_assert_int_eq(s21_abs(y), abs(y));

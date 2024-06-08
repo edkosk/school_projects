@@ -1,0 +1,16 @@
+#include <math.h>
+#include <stdlib.h>
+#include "../s21_math.h"
+
+#test s_21_first_test_atan  
+for (double x = -160.1; x <= 160.1; x += 0.1)
+    ck_assert_double_eq_tol(atan(x), s21_atan(x), 1e-6);
+
+#test s_21_nan_test_atan
+  ck_assert_double_nan(s21_atan(S21_NaN));
+
+#test s_21_pos_inf_test_atan
+  ck_assert_double_eq_tol(atan(S21_POS_INF), s21_atan(S21_POS_INF), 1e-6);
+
+#test s_21_neg_inf_test_atan
+  ck_assert_double_eq_tol(atan(S21_NEG_INF), s21_atan(S21_NEG_INF), 1e-6);

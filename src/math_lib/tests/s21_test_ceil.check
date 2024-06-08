@@ -1,0 +1,16 @@
+#include <math.h>
+#include <stdlib.h>
+#include "../s21_math.h"
+
+#test s_21_first_test_ceil  
+for (double x = -10; x <= 10; x += 0.001)
+    ck_assert_double_eq_tol(ceil(x), s21_ceil(x), 1e-6);
+
+#test s_21_nan_test_ceil
+  ck_assert_double_nan(s21_ceil(S21_NaN));
+
+#test s_21_pos_inf_test_ceil
+  ck_assert_double_eq(s21_ceil(S21_POS_INF), ceil(INFINITY));
+
+#test s_21_neg_inf_test_ceil
+  ck_assert_double_eq(s21_ceil(S21_NEG_INF), ceil(-INFINITY));
